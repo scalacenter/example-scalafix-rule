@@ -7,7 +7,8 @@ final case class Examplescalafixrule_v1(index: SemanticdbIndex)
     extends SemanticRule(index, "ExampleScalafixRule_v1") {
 
   override def fix(ctx: RuleCtx): Patch = {
-    ctx.addRight(ctx.tree, "// Hello world!\n")
+    if (ctx.input.text.contains("// Hello world!")) Patch.empty
+    else ctx.addRight(ctx.tree, "// Hello world!\n")
   }
 
 }
