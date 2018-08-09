@@ -1,5 +1,10 @@
 /*
-rule = "class:fix.Examplescalafixrule_v1"
+rules = [
+  "class:fix.Examplescalafixrule_v1"
+  "class:fix.ExampleSyntaxRule"
+  "class:fix.Syntactic"
+  "class:fix.Semantic"
+]
  */
 package fix
 
