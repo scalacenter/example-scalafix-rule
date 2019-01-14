@@ -1,41 +1,52 @@
 lazy val V = _root_.scalafix.sbt.BuildInfo
 inThisBuild(
   List(
-    scalaVersion := V.scala212,
-    addCompilerPlugin(scalafixSemanticdb),
-    scalacOptions += "-Yrangepos",
-    organization := "com.geirsson",
-    homepage := Some(url("https://github.com/olafurpg/coursier-small")),
-    licenses := List(
-      "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    organization := "com.example",
+    homepage := Some(url("https://github.com/com/example")),
+    licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
       Developer(
-        "olafurpg",
-        "Ólafur Páll Geirsson",
-        "olafurpg@gmail.com",
-        url("https://geirsson.com")
+        "example-username",
+        "Example Full Name",
+        "example@email.com",
+        url("https://example.com")
       )
+    ),
+    scalaVersion := V.scala212,
+    addCompilerPlugin(scalafixSemanticdb),
+    scalacOptions ++= List(
+      "-Yrangepos"
     )
-  ))
-
-lazy val rules = project.settings(
-  moduleName := "example-scalafix-rule",
-  libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafix
+  )
 )
 
-lazy val input = project
+skip in publish := true
 
-lazy val output = project
+lazy val rules = project.settings(
+  moduleName := "scalafix",
+  libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafixVersion
+)
+
+lazy val input = project.settings(
+  skip in publish := true
+)
+
+lazy val output = project.settings(
+  skip in publish := true
+)
 
 lazy val tests = project
   .settings(
-    libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafix % Test cross CrossVersion.full,
+    skip in publish := true,
+    libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafixVersion % Test cross CrossVersion.full,
+    compile.in(Compile) := 
+      compile.in(Compile).dependsOn(compile.in(input, Compile)).value,
     scalafixTestkitOutputSourceDirectories :=
       sourceDirectories.in(output, Compile).value,
     scalafixTestkitInputSourceDirectories :=
       sourceDirectories.in(input, Compile).value,
     scalafixTestkitInputClasspath :=
-      fullClasspath.in(input, Compile).value
+      fullClasspath.in(input, Compile).value,
   )
-  .dependsOn(input, rules)
+  .dependsOn(rules)
   .enablePlugins(ScalafixTestkitPlugin)
