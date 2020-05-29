@@ -2,6 +2,7 @@ lazy val V = _root_.scalafix.sbt.BuildInfo
 inThisBuild(
   List(
     scalaVersion := V.scala212,
+    crossScalaVersions := List(V.scala212, V.scala213),
     addCompilerPlugin(scalafixSemanticdb),
     scalacOptions += "-Yrangepos",
     organization := "com.geirsson",
