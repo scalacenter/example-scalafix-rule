@@ -20,7 +20,7 @@ inThisBuild(
 
 lazy val rules = project.settings(
   moduleName := "example-scalafix-rule",
-  libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafix
+  libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafixVersion
 )
 
 lazy val input = project
@@ -29,7 +29,7 @@ lazy val output = project
 
 lazy val tests = project
   .settings(
-    libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafix % Test cross CrossVersion.full,
+    libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafixVersion % Test cross CrossVersion.full,
     scalafixTestkitOutputSourceDirectories :=
       sourceDirectories.in(output, Compile).value,
     scalafixTestkitInputSourceDirectories :=
