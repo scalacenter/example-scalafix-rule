@@ -4,8 +4,8 @@ inThisBuild(
     scalaVersion := V.scala212,
     addCompilerPlugin(scalafixSemanticdb),
     scalacOptions += "-Yrangepos",
-    organization := "com.geirsson",
-    homepage := Some(url("https://github.com/olafurpg/coursier-small")),
+    organization := "ch.epfl.scala",
+    homepage := Some(url("https://github.com/scalacenter/example-scalafix-rule")),
     licenses := List(
       "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
