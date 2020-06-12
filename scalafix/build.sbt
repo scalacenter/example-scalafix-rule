@@ -19,6 +19,8 @@ inThisBuild(
     )
   ))
 
+skip in publish := true
+
 lazy val rules = project.settings(
   moduleName := "example-scalafix-rule",
   libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafixVersion
