@@ -25,8 +25,10 @@ lazy val rules = project.settings(
 )
 
 lazy val input = project
+  .settings(skip in publish := true)
 
 lazy val output = project
+  .settings(skip in publish := true)
 
 lazy val tests = project
   .settings(
@@ -38,5 +40,6 @@ lazy val tests = project
     scalafixTestkitInputClasspath :=
       fullClasspath.in(input, Compile).value
   )
+  .settings(skip in publish := true)
   .dependsOn(input, rules)
   .enablePlugins(ScalafixTestkitPlugin)
