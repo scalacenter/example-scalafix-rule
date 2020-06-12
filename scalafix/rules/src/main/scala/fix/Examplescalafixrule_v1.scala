@@ -21,14 +21,14 @@ object ExampleSyntaxRule extends v0.Rule("v0Rule") {
 }
 
 class Syntactic extends v1.SyntacticRule("SyntacticRule") {
-  override def fix(implicit doc: v1.Doc): v1.Patch = {
+  override def fix(implicit doc: v1.SyntacticDocument): v1.Patch = {
     if (doc.input.text.contains(s"// v1 $name!")) v0.Patch.empty
     else v0.Patch.addRight(doc.tree, s"// v1 $name!\n")
   }
 }
 
 class Semantic extends v1.SemanticRule("SemanticRule") {
-  override def fix(implicit doc: v1.SemanticDoc): v1.Patch = {
+  override def fix(implicit doc: v1.SemanticDocument): v1.Patch = {
     if (doc.input.text.contains(s"// v1 $name!")) v1.Patch.empty
     else v1.Patch.addRight(doc.tree, s"// v1 $name!\n")
   }
