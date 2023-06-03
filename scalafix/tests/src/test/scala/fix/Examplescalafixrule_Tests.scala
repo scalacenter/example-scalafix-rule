@@ -6,6 +6,6 @@ import scalafix.v0._
 
 class Examplescalafixrule_Tests
     extends scalafix.testkit.AbstractSemanticRuleSuite
-    with org.scalatest.FunSuiteLike {
+    with org.scalatest.funsuite.AnyFunSuiteLike {
   runAllTests()
 }
