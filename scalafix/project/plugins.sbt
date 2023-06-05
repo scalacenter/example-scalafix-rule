@@ -1,4 +1,4 @@
-addSbtPlugin("com.geirsson" % "sbt-ci-release" % "1.5.0")
+addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.5.12")
 resolvers += Resolver.sonatypeRepo("snapshots")
 addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.4+48-a158b916-SNAPSHOT")
 dependencyOverrides += "ch.epfl.scala" % "scalafix-interfaces" % "0.11.0"
