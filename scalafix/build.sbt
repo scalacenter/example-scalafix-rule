@@ -5,6 +5,8 @@ inThisBuild(
     crossScalaVersions := List(V.scala212, V.scala213),
     addCompilerPlugin(scalafixSemanticdb),
     scalacOptions += "-Yrangepos",
+    // compile on a modern JDK but keep the published bytecode Java 8 compatible
+    Compile / scalacOptions += "-release:8",
     organization := "ch.epfl.scala",
     homepage := Some(url("https://github.com/scalacenter/example-scalafix-rule")),
     licenses := List(
